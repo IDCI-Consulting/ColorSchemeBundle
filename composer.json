@@ -1,0 +1,27 @@
+{
+    "name": "idci/color-scheme-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony ColorSchemeBundle",
+    "keywords": ["color scheme", "color", "transformer"],
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "Gabriel Bondaz",
+            "email": "gabriel.bondaz@idci-consulting.fr",
+            "homepage": "http://www.idci-consulting.fr"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": "2.*",
+        "twig/twig": "*"
+    },
+    "suggest": {
+        "idci/exporter-bundle": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "IDCI\\Bundle\\ColorSchemeBundle": "" }
+    },
+    "target-dir": "IDCI/Bundle/ColorSchemeBundle",
+    "minimum-stability": "dev"
+}
