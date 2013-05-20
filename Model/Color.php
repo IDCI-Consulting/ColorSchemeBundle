@@ -14,10 +14,10 @@ class Color
     protected $color;
     protected $format;
 
-    const COLOR_FORMAT_STR = 'str';
-    const COLOR_FORMAT_HEX = 'hex';
-    const COLOR_FORMAT_DEC = 'dec';
-    const COLOR_FORMAT_HSL = 'hsl';
+    const COLOR_FORMAT_DEC = 'DEC';
+    const COLOR_FORMAT_HEX = 'HEX';
+    const COLOR_FORMAT_HSL = 'HSL';
+    const COLOR_FORMAT_STR = 'STR';
 
     public static $webColorStrToHexMap = array(
         "AliceBlue" => "#F0F8FF",
@@ -164,11 +164,12 @@ class Color
     );
 
     /**
-     * Construcutor
+     * Constructor
      *
      * @param string $color
+     * @param string $format
      */
-    public function __construct($color)
+    public function __construct($color, $format = null)
     {
         $this->setColor($color);
     }
@@ -226,6 +227,57 @@ class Color
         }
 
         return true;
+    }
+
+    /**
+     * Check if you were given a good dec color string
+     * ex: 255,80,0
+     *
+     * @param string $color
+     * @return string boolean
+     */
+    private static function _checkDec($color)
+    {
+        return (1 === preg_match("/^([0-9]{1,3},[0-9]{1,3},[0-9]{1,3})$/", $color));
+    }
+
+    /**
+     * Check if you were given a good hex color string
+     * ex: #FB8A09 or #F80
+     *
+     * @param string $color
+     * @return string boolean
+     */
+    private static function _checkHex($color)
+    {
+        return (1 === preg_match("/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/", $color));
+    }
+
+    /**
+     * Check if you were given a good hsl color string
+     * ex: 360,100%,50%
+     *
+     * @param string $color
+     * @return string boolean
+     */
+    private static function _checkHsl($color)
+    {
+        return true;
+    }
+
+    /**
+     * Check if you were given a good color string
+     *
+     * @param string $color
+     * @return string boolean
+     */
+    private static function _checkStr($color)
+    {
+        if(in_array($color, array_keys(self::$webColorStrToHexMap))) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -341,7 +393,7 @@ class Color
 
 
     /**
-     * Given a HEX string returns a RGB array equivalent.
+     * Given a HEX string returns a DEC equivalent.
      *
      * @param string $color
      * @return array RGB associative array
@@ -417,27 +469,5 @@ class Color
         }
 
         return $v1;
-    }
-
-    /**
-     * You need to check if you were given a good hex string
-     *
-     * @param string $hex
-     * @return string Color
-     * @throws Exception "Bad color format"
-     */
-    private static function _checkHex($hex)
-    {
-        // Strip # sign is present
-        $color = str_replace("#", "", $hex);
-
-        // Make sure it's 6 digits
-        if( strlen($color) == 3 ) {
-            $color = $color[0].$color[0].$color[1].$color[1].$color[2].$color[2];
-        } else if( strlen($color) != 6 ) {
-            throw new \Exception("HEX color needs to be 6 or 3 digits long");
-        }
-
-        return $color;
     }
 }
