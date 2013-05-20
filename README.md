@@ -4,7 +4,7 @@ ColorSchemeBundle
 Symfony2 color scheme bundle
 
 
-Instalation
+Installation
 ===========
 
 To install this bundle please follow the next steps:
