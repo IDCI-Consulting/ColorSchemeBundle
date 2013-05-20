@@ -7,15 +7,22 @@
  *
  */
 
-namespace IDCI\Bundle\ColorSchemeBundle\Color;
+namespace IDCI\Bundle\ColorSchemeBundle\Model;
 
-class ColorSTR implements ColorInterface
+class ColorSTR extends AbstractColor
 {
     protected $colorName;
 
     public function __construct($color_name)
     {
         $this->setColorName($color_name);
+
+        parent::__construct();
+    }
+
+    public function __toString()
+    {
+        return $this->getColorName();
     }
 
     public function getColorName()
@@ -25,7 +32,9 @@ class ColorSTR implements ColorInterface
 
     public function setColorName($color_name)
     {
-        return $this->colorName = $color_name;
+        $this->colorName = $color_name;
+
+        return $this;
     }
 
     public function isValid()
@@ -36,6 +45,43 @@ class ColorSTR implements ColorInterface
     public static function getAvalaibleColorNames()
     {
         return array_key(self::$webColorStrToHexMap);
+    }
+
+    /**
+     * @return ColorInterface
+     */
+    public function toDec();
+    {
+        return $this->toHex()->toDec();
+    }
+
+    /**
+     * @return ColorInterface
+     */
+    public function toHex();
+    {
+        $r = 0;
+        $g = 0;
+        $b = 0;
+
+        return new ColorRGBHexadecimal($r, $g, $b);
+    }
+
+    /**
+     * @return ColorInterface
+     */
+    public function toHsl()
+    {
+        return $this->toHex()->toHsl();
+    }
+
+    /**
+     * @return ColorInterface
+     * @throw UndefinedColorNameException
+     */
+    public function toStr()
+    {
+        return $this;
     }
 
     public static $webColorStrToHexMap = array(

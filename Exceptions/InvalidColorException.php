@@ -7,9 +7,8 @@
  *
  */
 
-namespace IDCI\Bundle\ColorSchemeBundle\Color;
+namespace IDCI\Bundle\ColorSchemeBundle\Exceptions;
 
-interface ColorInterface
+class InvalidColorException extends \Exception
 {
-    public function isValid();
 }

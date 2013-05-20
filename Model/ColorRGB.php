@@ -7,9 +7,9 @@
  *
  */
 
-namespace IDCI\Bundle\ColorSchemeBundle\Color;
+namespace IDCI\Bundle\ColorSchemeBundle\Model;
 
-class ColorRGB implements ColorInterface
+abstract class ColorRGB extends AbstractColor
 {
     protected $red;
     protected $green;
@@ -20,6 +20,8 @@ class ColorRGB implements ColorInterface
         $this->setRed($red);
         $this->setGreen($green);
         $this->setBlue($blue);
+
+        parent::__construct();
     }
 
     public function getRed()
@@ -61,14 +63,11 @@ class ColorRGB implements ColorInterface
     public function isValid()
     {
         return (
-            self::isValidSingleColorValue($this->getRed()) &&
-            self::isValidSingleColorValue($this->getGreen()) && 
-            self::isValidSingleColorValue($this->getBlue())
+            $this->isValidSingleColorValue($this->getRed()) &&
+            $this->isValidSingleColorValue($this->getGreen()) && 
+            $this->isValidSingleColorValue($this->getBlue())
         );
     }
 
-    public static function isValidSingleColorValue($value)
-    {
-        return (is_int($value) && 0 <= $value && $value < 256);
-    }
+    abstract public function isValidSingleColorValue($value);
 }

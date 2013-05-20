@@ -7,9 +7,9 @@
  *
  */
 
-namespace IDCI\Bundle\ColorSchemeBundle\Color;
+namespace IDCI\Bundle\ColorSchemeBundle\Model;
 
-class ColorHSL implements ColorInterface
+class ColorHSL extends AbstractColor
 {
     protected $hue;
     protected $saturation;
@@ -20,11 +20,13 @@ class ColorHSL implements ColorInterface
         $this->setHue($hue);
         $this->setSaturation($saturation);
         $this->setLightness($lightness);
+
+        parent::__construct();
     }
 
     public function __toString()
     {
-        return sprintf("%s%%,%s%s",
+        return sprintf("%s%%,%s,%s",
             $this->getRed(),
             $this->getGreen(),
             $this->getBlue()
