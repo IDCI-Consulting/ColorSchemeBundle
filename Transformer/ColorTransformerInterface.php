@@ -11,7 +11,7 @@ namespace IDCI\Bundle\ColorSchemeBundle\Transformer;
 
 use IDCI\Bundle\ColorSchemeBundle\Model\Color;
 
-class ColorTransformerInterface
+interface ColorTransformerInterface
 {
     /**
      * Get Name

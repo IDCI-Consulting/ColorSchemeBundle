@@ -14,11 +14,12 @@ class Color
     protected $color;
     protected $format;
 
+    const COLOR_FORMAT_STR = 'str';
     const COLOR_FORMAT_HEX = 'hex';
     const COLOR_FORMAT_DEC = 'dec';
     const COLOR_FORMAT_HSL = 'hsl';
 
-    public static $webColorHexaMap = array(
+    public static $webColorStrToHexMap = array(
         "AliceBlue" => "#F0F8FF",
         "AntiqueWhite" => "#FAEBD7",
         "Aqua" => "#00FFFF",
@@ -180,6 +181,7 @@ class Color
     public function setColor($color)
     {
         $this->color = $color;
+        $this->guessFormat();
     }
 
     /**
@@ -212,9 +214,19 @@ class Color
         return $this->format;
     }
 
-    // ====================
-    // = Public Interface =
-    // ====================
+    /**
+     * Guess Format
+     *
+     * @return boolean
+     */
+    public function guessFormat()
+    {
+        if($this->getFormat() !== null) {
+            return false;
+        }
+
+        return true;
+    }
 
     /**
      * Given a HEX string returns a HSL array equivalent.
@@ -222,7 +234,7 @@ class Color
      * @param string $color
      * @return array HSL associative array
      */
-    public static function hexToHsl( $color )
+    public static function hexToHsl($color)
     {
         // Sanity check
         $color = self::_checkHex($color);
@@ -334,7 +346,7 @@ class Color
      * @param string $color
      * @return array RGB associative array
      */
-    public static function hexToRgb( $color )
+    public static function hexToRgb($color)
     {
         // Sanity check
         $color = self::_checkHex($color);
@@ -414,7 +426,7 @@ class Color
      * @return string Color
      * @throws Exception "Bad color format"
      */
-    private static function _checkHex( $hex )
+    private static function _checkHex($hex)
     {
         // Strip # sign is present
         $color = str_replace("#", "", $hex);
