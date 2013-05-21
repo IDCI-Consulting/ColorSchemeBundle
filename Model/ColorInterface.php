@@ -19,12 +19,12 @@ interface ColorInterface
     /**
      * @return ColorInterface
      */
-    public function toHex();
+    public function toDec();
 
     /**
      * @return ColorInterface
      */
-    public function toDec();
+    public function toHex();
 
     /**
      * @return ColorInterface

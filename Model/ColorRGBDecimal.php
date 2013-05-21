@@ -11,6 +11,15 @@ namespace IDCI\Bundle\ColorSchemeBundle\Model;
 
 class ColorRGBDecimal extends ColorRGB
 {
+    public function __toString()
+    {
+        return sprintf("%s,%s,%s",
+            $this->getRed(),
+            $this->getGreen(),
+            $this->getBlue()
+        );
+    }
+
     public function isValidSingleColorValue($value)
     {
         return (is_int($value) && 0 <= $value && $value < 256);
@@ -19,7 +28,7 @@ class ColorRGBDecimal extends ColorRGB
     /**
      * @return ColorInterface
      */
-    public function toDec();
+    public function toDec()
     {
         return $this;
     }
@@ -27,12 +36,12 @@ class ColorRGBDecimal extends ColorRGB
     /**
      * @return ColorInterface
      */
-    public function toHex();
+    public function toHex()
     {
         return new ColorRGBHexadecimal(
             dechex($this->getRed()),
             dechex($this->getGreen()),
-            dechex($this->getBlue()),
+            dechex($this->getBlue())
         );
     }
 
@@ -60,8 +69,8 @@ class ColorRGBDecimal extends ColorRGB
             }
         }
 
-        $s = round($s * 100);
-        $l = round($l * 100);
+        $s = (int)round($s * 100);
+        $l = (int)round($l * 100);
 
         return new ColorHSL($h, $s, $l);
     }
@@ -72,7 +81,7 @@ class ColorRGBDecimal extends ColorRGB
      */
     public function toStr()
     {
-        $this->toHex()->toStr();
+        return $this->toHex()->toStr();
     }
 
     /**
@@ -107,6 +116,6 @@ class ColorRGBDecimal extends ColorRGB
             }
         }
 
-        return round($h);
+        return (int)round($h);
     }
 }

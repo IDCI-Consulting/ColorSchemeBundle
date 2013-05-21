@@ -15,7 +15,7 @@ abstract class AbstractColor implements ColorInterface
 {
     public function __construct()
     {
-        if(!$this->isValid) {
+        if(!$this->isValid()) {
             throw new InvalidColorException();
         }
     }

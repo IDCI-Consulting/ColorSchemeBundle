@@ -14,27 +14,7 @@ use IDCI\Bundle\ColorSchemeBundle\Transformer\ComplementarityColorTransformer;
 
 class ComplementarityColorTransformerTest extends \PHPUnit_Framework_TestCase
 {
-    public function testStr()
+    public function testTest()
     {
-        $color = new Color('gray');
-        $complementarityColorTransformer = new ComplementarityColorTransformer();
-        $complementarityColor = $complementarityColorTransformer->transform($color);
-
-        $this->assertEquals($complementarityColor, 10);
-    }
-
-    public function testHex()
-    {
-
-    }
-
-    public function testDec()
-    {
-
-    }
-
-    public function testHsl()
-    {
-
     }
 }
