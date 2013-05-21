@@ -12,11 +12,6 @@ namespace IDCI\Bundle\ColorSchemeBundle\Model;
 interface ColorInterface
 {
     /**
-     * @return boolean
-     */
-    public function isValid();
-
-    /**
      * @return ColorInterface
      */
     public function toDec();

@@ -9,48 +9,194 @@
 
 namespace IDCI\Bundle\ColorSchemeBundle\Model;
 
-class Color
+class Color implements ColorInterface
 {
-    protected $colorCode;
-    protected $colorObject;
+    protected $colorValue;
+    protected $colorObject = null;
 
     /**
      * Constructor
      *
      * @param string $color
      */
-    public function __construct($color_code)
+    public function __construct($color_value)
     {
-        $this->setColorCode($color_code);
+        $this->setColorValue($color_value);
         $this->guessColorObject();
     }
 
     /**
-     * Set ColorCode
+     * Set ColorValue
      *
-     * @param string $color_code
+     * @param string $color_value
      */
-    public function setColorCode($color_code)
+    public function setColorValue($color_value)
     {
-        $this->colorCode = $color_code;
+        $this->colorValue = $color_value;
     }
 
     /**
-     * Get ColorCode
+     * Get ColorValue
      *
      * @return string
      */
-    public function getColorCode()
+    public function getColorValue()
     {
-        return $this->colorCode;
+        return $this->colorValue;
+    }
+
+    /**
+     * Set ColorObject
+     *
+     * @param ColorInterface $color_object
+     */
+    public function setColorObject(ColorInterface $color_object)
+    {
+        $this->colorObject = $color_object;
+    }
+
+    /**
+     * Get ColorObject
+     *
+     * @return ColorInterface
+     */
+    public function getColorObject()
+    {
+        return $this->colorObject;
     }
 
     /**
      * Guess ColorObject
      *
-     * @throw InvalidColorException
+     * @return boolean
      */
     protected function guessColorObject()
     {
+        if($value = self::isValidHSLColorValue($this->getColorValue())) {
+            $this->setColorObject(new ColorHSL($value[0], $value[1], $value[2]));
+        } elseif($value = self::isValidRGBDecimalColorValue($this->getColorValue())) {
+            $this->setColorObject(new ColorRGBDecimal($value[0], $value[1], $value[2]));
+        } elseif($value = self::isValidRGBHexadecimalColorValue($this->getColorValue())) {
+            $this->setColorObject(new ColorRGBHexadecimal($value[0], $value[1], $value[2]));
+        } elseif($value = self::isValidSTRColorValue($this->getColorValue())) {
+            $this->setColorObject(new ColorSTR($value));
+        }
+
+        return null !== $this->getColorObject();
+    }
+
+    /**
+     *
+     * @return boolean | array
+     */
+    public static function isValidHSLColorValue($value)
+    {
+        if(1 === preg_match("/^([0-9]{1,3})%,([0-9]{1,3}),([0-9]{1,3})/i", $value, $matches)) {
+            if(100 < $matches[1]) {
+                return false;
+            }
+            if(100 < $matches[2]) {
+                return false;
+            }
+            if(100 < $matches[3]) {
+                return false;
+            }
+
+            return array((int)$matches[1], (int)$matches[2], (int)$matches[3]);
+        }
+
+        return false;
+    } 
+
+    /**
+     *
+     * @return boolean | array
+     */
+    public static function isValidRGBDecimalColorValue($value)
+    {
+        if(1 === preg_match("/^([0-9]{1,3}),([0-9]{1,3}),([0-9]{1,3})$/i", $value, $matches)) {
+            if(255 < $matches[1]) {
+                return false;
+            }
+            if(255 < $matches[2]) {
+                return false;
+            }
+            if(255 < $matches[3]) {
+                return false;
+            }
+
+            return array((int)$matches[1], (int)$matches[2], (int)$matches[3]);
+        }
+
+        return false;
+    }
+
+    /**
+     *
+     * @return boolean | array
+     */
+    public static function isValidRGBHexadecimalColorValue($value)
+    {
+        if(1 === preg_match("/^#([A-Fa-f0-9]{1,2})([A-Fa-f0-9]{1,2})([A-Fa-f0-9]{1,2})$/i", $value, $matches)) {
+            if(255 < $matches[1]) {
+                return false;
+            }
+            if(255 < $matches[2]) {
+                return false;
+            }
+            if(255 < $matches[3]) {
+                return false;
+            }
+
+            return array((int)$matches[1], (int)$matches[2], (int)$matches[3]);
+        }
+
+        return false;
+    }
+
+    /**
+     *
+     * @return boolean | string
+     */
+    public static function isValidSTRColorValue($value)
+    {
+        if(in_array($value, ColorSTR::getAvalaibleColorNames())) {
+            return $value;
+        }
+
+        return false;
+    }
+
+    /**
+     * @return ColorInterface
+     */
+    public function toDec()
+    {
+        return $this->getColorObject()->toDec();
+    }
+
+    /**
+     * @return ColorInterface
+     */
+    public function toHex()
+    {
+        return $this->getColorObject()->toHex();
+    }
+
+    /**
+     * @return ColorInterface
+     */
+    public function toHsl()
+    {
+        return $this->getColorObject()->toHsl();
+    }
+
+    /**
+     * @return ColorInterface
+     * @throw UndefinedColorNameException
+     */
+    public function toStr()
+    {
+        return $this->getColorObject()->toStr();
     }
 }

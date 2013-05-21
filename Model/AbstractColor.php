@@ -19,4 +19,9 @@ abstract class AbstractColor implements ColorInterface
             throw new InvalidColorException();
         }
     }
+
+    /**
+     * @return boolean
+     */
+    abstract public function isValid();
 }
