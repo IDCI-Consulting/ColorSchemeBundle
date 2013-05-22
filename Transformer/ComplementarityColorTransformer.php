@@ -9,7 +9,7 @@
 
 namespace IDCI\Bundle\ColorSchemeBundle\Transformer;
 
-use IDCI\Bundle\ColorSchemeBundle\Model\Color;
+use IDCI\Bundle\ColorSchemeBundle\Model\ColorInterface;
 
 class ComplementarityColorTransformer implements ColorTransformerInterface
 {
@@ -24,7 +24,7 @@ class ComplementarityColorTransformer implements ColorTransformerInterface
     /**
      * @see IDCI\Bundle\ColorSchemeBundle\Transformer\ColorTransformerInterface
      */
-    public function transform(Color $color)
+    public function transform(ColorInterface $color)
     {
         return 10;
     }

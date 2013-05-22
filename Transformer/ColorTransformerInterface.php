@@ -9,7 +9,7 @@
 
 namespace IDCI\Bundle\ColorSchemeBundle\Transformer;
 
-use IDCI\Bundle\ColorSchemeBundle\Model\Color;
+use IDCI\Bundle\ColorSchemeBundle\Model\ColorInterface;
 
 interface ColorTransformerInterface
 {
@@ -23,8 +23,8 @@ interface ColorTransformerInterface
     /**
      * Transform
      *
-     * @param Color $color
+     * @param ColorInterface $color
      * @return array
      */
-    public function transform(Color $color);
+    public function transform(ColorInterface $color);
 }
