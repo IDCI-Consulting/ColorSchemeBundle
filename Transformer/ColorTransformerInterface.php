@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ *
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
  * @licence: GPL
  *
@@ -23,7 +23,7 @@ interface ColorTransformerInterface
     /**
      * Transform
      *
-     * @param ColorInterface $color
+     * @param  ColorInterface $color
      * @return array
      */
     public function transform(ColorInterface $color);

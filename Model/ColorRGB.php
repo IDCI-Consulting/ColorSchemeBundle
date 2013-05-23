@@ -1,9 +1,9 @@
 <?php
 
 /**
- * 
- * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
- * @licence: GPL
+ *
+ * @author  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
+ * @licence GPL
  *
  */
 
@@ -60,11 +60,14 @@ abstract class ColorRGB extends AbstractColor
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function isValid()
     {
         return (
             $this->isValidSingleColorValue($this->getRed()) &&
-            $this->isValidSingleColorValue($this->getGreen()) && 
+            $this->isValidSingleColorValue($this->getGreen()) &&
             $this->isValidSingleColorValue($this->getBlue())
         );
     }

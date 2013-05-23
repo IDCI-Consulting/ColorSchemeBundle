@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ *
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
  * @licence: GPL
  *
@@ -28,7 +28,7 @@ class ColorRGBHexadecimal extends ColorRGB
     }
 
     /**
-     * @return ColorInterface
+     * {@inheritDoc}
      */
     public function toDec()
     {
@@ -40,7 +40,7 @@ class ColorRGBHexadecimal extends ColorRGB
     }
 
     /**
-     * @return ColorInterface
+     * {@inheritDoc}
      */
     public function toHex()
     {
@@ -48,7 +48,7 @@ class ColorRGBHexadecimal extends ColorRGB
     }
 
     /**
-     * @return ColorInterface
+     * {@inheritDoc}
      */
     public function toHsl()
     {
@@ -56,12 +56,11 @@ class ColorRGBHexadecimal extends ColorRGB
     }
 
     /**
-     * @return ColorInterface
-     * @throw UndefinedColorNameException
+     * {@inheritDoc}
      */
     public function toStr()
     {
-        if($str = ColorSTR::getColorNameFromHexaCode($this->__toString())) {
+        if ($str = ColorSTR::getColorNameFromHexaCode($this->__toString())) {
             return new ColorSTR($str);
         }
 

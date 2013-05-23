@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ *
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
  * @licence: GPL
  *
@@ -42,6 +42,9 @@ class ColorSTR extends AbstractColor
         return $this->isValid() ? self::$webColorStrToHexMap[$this->colorName] : null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function isValid()
     {
         return in_array($this->getColorName(), self::getAvalaibleColorNames());
@@ -53,7 +56,7 @@ class ColorSTR extends AbstractColor
     }
 
     /**
-     * @return ColorInterface
+     * {@inheritDoc}
      */
     public function toDec()
     {
@@ -61,7 +64,7 @@ class ColorSTR extends AbstractColor
     }
 
     /**
-     * @return ColorInterface
+     * {@inheritDoc}
      */
     public function toHex()
     {
@@ -71,7 +74,7 @@ class ColorSTR extends AbstractColor
     }
 
     /**
-     * @return ColorInterface
+     * {@inheritDoc}
      */
     public function toHsl()
     {
@@ -79,8 +82,7 @@ class ColorSTR extends AbstractColor
     }
 
     /**
-     * @return ColorInterface
-     * @throw UndefinedColorNameException
+     * {@inheritDoc}
      */
     public function toStr()
     {
@@ -90,8 +92,9 @@ class ColorSTR extends AbstractColor
     /**
      * Get a ColorName from an hexa code
      *
-     * @param  string $hex
-     * @return string | null
+     * @param string $hex
+     *
+     * @return string|null
      */
     public static function getColorNameFromHexaCode($hex)
     {

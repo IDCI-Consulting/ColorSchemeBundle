@@ -1,9 +1,9 @@
 <?php
 
 /**
- * 
- * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
- * @licence: GPL
+ *
+ * @author  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
+ * @licence GPL
  *
  */
 
@@ -72,13 +72,13 @@ class Color implements ColorInterface
      */
     protected function guessColorObject()
     {
-        if($value = self::isValidHSLColorValue($this->getColorValue())) {
+        if ($value = self::isValidHSLColorValue($this->getColorValue())) {
             $this->setColorObject(new ColorHSL($value[0], $value[1], $value[2]));
-        } elseif($value = self::isValidRGBDecimalColorValue($this->getColorValue())) {
+        } elseif ($value = self::isValidRGBDecimalColorValue($this->getColorValue())) {
             $this->setColorObject(new ColorRGBDecimal($value[0], $value[1], $value[2]));
-        } elseif($value = self::isValidRGBHexadecimalColorValue($this->getColorValue())) {
+        } elseif ($value = self::isValidRGBHexadecimalColorValue($this->getColorValue())) {
             $this->setColorObject(new ColorRGBHexadecimal($value[0], $value[1], $value[2]));
-        } elseif($value = self::isValidSTRColorValue($this->getColorValue())) {
+        } elseif ($value = self::isValidSTRColorValue($this->getColorValue())) {
             $this->setColorObject(new ColorSTR($value));
         }
 
@@ -87,45 +87,45 @@ class Color implements ColorInterface
 
     /**
      *
-     * @return boolean | array
+     * @return boolean|array
      */
     public static function isValidHSLColorValue($value)
     {
-        if(1 === preg_match("/^([0-9]{1,3})%,([0-9]{1,3}),([0-9]{1,3})/i", $value, $matches)) {
-            if(100 < $matches[1]) {
+        if (1 === preg_match("/^([0-9]{1,3})%,([0-9]{1,3}),([0-9]{1,3})/i", $value, $matches)) {
+            if (100 < $matches[1]) {
                 return false;
             }
-            if(100 < $matches[2]) {
+            if (100 < $matches[2]) {
                 return false;
             }
-            if(100 < $matches[3]) {
+            if (100 < $matches[3]) {
                 return false;
             }
 
-            return array((int)$matches[1], (int)$matches[2], (int)$matches[3]);
+            return array((int) $matches[1], (int) $matches[2], (int) $matches[3]);
         }
 
         return false;
-    } 
+    }
 
     /**
      *
-     * @return boolean | array
+     * @return boolean|array
      */
     public static function isValidRGBDecimalColorValue($value)
     {
-        if(1 === preg_match("/^([0-9]{1,3}),([0-9]{1,3}),([0-9]{1,3})$/i", $value, $matches)) {
-            if(255 < $matches[1]) {
+        if (1 === preg_match("/^([0-9]{1,3}),([0-9]{1,3}),([0-9]{1,3})$/i", $value, $matches)) {
+            if (255 < $matches[1]) {
                 return false;
             }
-            if(255 < $matches[2]) {
+            if (255 < $matches[2]) {
                 return false;
             }
-            if(255 < $matches[3]) {
+            if (255 < $matches[3]) {
                 return false;
             }
 
-            return array((int)$matches[1], (int)$matches[2], (int)$matches[3]);
+            return array((int) $matches[1], (int) $matches[2], (int) $matches[3]);
         }
 
         return false;
@@ -133,22 +133,22 @@ class Color implements ColorInterface
 
     /**
      *
-     * @return boolean | array
+     * @return boolean|array
      */
     public static function isValidRGBHexadecimalColorValue($value)
     {
-        if(1 === preg_match("/^#([A-Fa-f0-9]{1,2})([A-Fa-f0-9]{1,2})([A-Fa-f0-9]{1,2})$/i", $value, $matches)) {
-            if(255 < $matches[1]) {
+        if (1 === preg_match("/^#([A-Fa-f0-9]{1,2})([A-Fa-f0-9]{1,2})([A-Fa-f0-9]{1,2})$/i", $value, $matches)) {
+            if (255 < $matches[1]) {
                 return false;
             }
-            if(255 < $matches[2]) {
+            if (255 < $matches[2]) {
                 return false;
             }
-            if(255 < $matches[3]) {
+            if (255 < $matches[3]) {
                 return false;
             }
 
-            return array((int)$matches[1], (int)$matches[2], (int)$matches[3]);
+            return array((int) $matches[1], (int) $matches[2], (int) $matches[3]);
         }
 
         return false;
@@ -156,11 +156,11 @@ class Color implements ColorInterface
 
     /**
      *
-     * @return boolean | string
+     * @return boolean|string
      */
     public static function isValidSTRColorValue($value)
     {
-        if(in_array($value, ColorSTR::getAvalaibleColorNames())) {
+        if (in_array($value, ColorSTR::getAvalaibleColorNames())) {
             return $value;
         }
 
@@ -168,7 +168,7 @@ class Color implements ColorInterface
     }
 
     /**
-     * @return ColorInterface
+     * {@inheritDoc}
      */
     public function toDec()
     {
@@ -176,7 +176,7 @@ class Color implements ColorInterface
     }
 
     /**
-     * @return ColorInterface
+     * {@inheritDoc}
      */
     public function toHex()
     {
@@ -184,7 +184,7 @@ class Color implements ColorInterface
     }
 
     /**
-     * @return ColorInterface
+     * {@inheritDoc}
      */
     public function toHsl()
     {
@@ -192,8 +192,7 @@ class Color implements ColorInterface
     }
 
     /**
-     * @return ColorInterface
-     * @throw UndefinedColorNameException
+     * {@inheritDoc}
      */
     public function toStr()
     {

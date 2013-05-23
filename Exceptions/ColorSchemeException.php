@@ -9,6 +9,9 @@
 
 namespace IDCI\Bundle\ColorSchemeBundle\Exceptions;
 
-class UndefinedColorNameException extends ColorSchemeException
+/**
+ * Base exception holder for any exception thrown by this bundle
+ */
+class ColorSchemeException extends \Exception
 {
 }

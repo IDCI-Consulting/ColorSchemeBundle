@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ *
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
  * @licence: GPL
  *
@@ -26,7 +26,7 @@ class ColorRGBDecimal extends ColorRGB
     }
 
     /**
-     * @return ColorInterface
+     * {@inheritDoc}
      */
     public function toDec()
     {
@@ -34,7 +34,7 @@ class ColorRGBDecimal extends ColorRGB
     }
 
     /**
-     * @return ColorInterface
+     * {@inheritDoc}
      */
     public function toHex()
     {
@@ -46,7 +46,7 @@ class ColorRGBDecimal extends ColorRGB
     }
 
     /**
-     * @return ColorInterface
+     * {@inheritDoc}
      */
     public function toHsl()
     {
@@ -69,15 +69,14 @@ class ColorRGBDecimal extends ColorRGB
             }
         }
 
-        $s = (int)round($s * 100);
-        $l = (int)round($l * 100);
+        $s = (int) round($s * 100);
+        $l = (int) round($l * 100);
 
         return new ColorHSL($h, $s, $l);
     }
 
     /**
-     * @return ColorInterface
-     * @throw UndefinedColorNameException
+     * {@inheritDoc}
      */
     public function toStr()
     {
@@ -89,9 +88,9 @@ class ColorRGBDecimal extends ColorRGB
      * The RGB(r, g, b) values are from 0..1 in this method since both HSV
      * and HSL converstions require them to be.
      *
-     * @param  float $r
-     * @param  float $g
-     * @param  float $b
+     * @param  float   $r
+     * @param  float   $g
+     * @param  float   $b
      * @return integer
      */
     public static function parseHue($r, $g, $b)
@@ -116,6 +115,6 @@ class ColorRGBDecimal extends ColorRGB
             }
         }
 
-        return (int)round($h);
+        return (int) round($h);
     }
 }
