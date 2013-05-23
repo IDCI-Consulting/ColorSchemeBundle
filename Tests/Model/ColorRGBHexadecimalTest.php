@@ -7,7 +7,7 @@
  *
  */
 
-namespace IDCI\Bundle\ColorSchemeBundle\Tests;
+namespace IDCI\Bundle\ColorSchemeBundle\Tests\Model;
 
 use IDCI\Bundle\ColorSchemeBundle\Model\ColorRGBHexadecimal;
 

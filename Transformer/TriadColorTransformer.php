@@ -57,8 +57,8 @@ class TriadColorTransformer extends AbstractColorTransformer
         $hue2 = ($hsl2->getHue() - $this->getHueVary()) % 360;
 
         return array(
-            $hsl1->setHue($hue1)->toHex()->__toString(),
-            $hsl2->setHue($hue2)->toHex()->__toString()
+            $hsl1->setHue($hue1)->toHex(),
+            $hsl2->setHue($hue2)->toHex()
         );
     }
 }

@@ -29,6 +29,6 @@ class DarkenColorTransformer extends AbstractLightnessColorTransformer
         $hsl = $color->toHSL();
         $l = $hsl->getLightness() - $this->getLightnessVary();
 
-        return $hsl->setLightness($l > 100 ? 100 : $l);
+        return $hsl->setLightness($l > 100 ? 100 : $l)->toHex();
     }
 }

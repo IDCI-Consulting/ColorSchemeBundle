@@ -29,6 +29,6 @@ class ComplementColorTransformer extends AbstractColorTransformer
         $hsl = $color->toHSL();
         $h = ($hsl->getHue() + 180) % 360;
 
-        return $hsl->setHue($h); 
+        return $hsl->setHue($h)->toHex(); 
     }
 }

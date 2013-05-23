@@ -7,7 +7,7 @@
  *
  */
 
-namespace IDCI\Bundle\ColorSchemeBundle\Tests;
+namespace IDCI\Bundle\ColorSchemeBundle\Tests\Transformer;
 
 use IDCI\Bundle\ColorSchemeBundle\Model\Color;
 use IDCI\Bundle\ColorSchemeBundle\Transformer\LightenColorTransformer;
