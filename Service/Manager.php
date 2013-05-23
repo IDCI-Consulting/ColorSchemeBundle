@@ -10,6 +10,7 @@
 namespace IDCI\Bundle\ColorSchemeBundle\Service;
 
 use IDCI\Bundle\ColorSchemeBundle\Transformer\ColorTransformerInterface;
+use IDCI\Bundle\ColorSchemeBundle\Model\Color;
 
 class Manager
 {
@@ -33,7 +34,9 @@ class Manager
      */
     public function fromColors($colors)
     {
-        $this->colors = $colors;
+        foreach($colors as $color) {
+            $this->colors[] = new Color($color);
+        }
 
         return $this;
     }
