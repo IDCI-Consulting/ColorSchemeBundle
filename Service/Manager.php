@@ -87,7 +87,7 @@ class Manager
                 }
                 $results[$k] = array_merge(
                     $results[$k],
-                    $transformer->transform($color)
+                    array($transformer->getName() => $transformer->transform($color))
                 );
             }
         }

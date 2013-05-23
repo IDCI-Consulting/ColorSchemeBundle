@@ -138,17 +138,17 @@ class Color implements ColorInterface
     public static function isValidRGBHexadecimalColorValue($value)
     {
         if(1 === preg_match("/^#([A-Fa-f0-9]{1,2})([A-Fa-f0-9]{1,2})([A-Fa-f0-9]{1,2})$/i", $value, $matches)) {
-            if(255 < $matches[1]) {
+            if(255 < hexdec($matches[1])) {
                 return false;
             }
-            if(255 < $matches[2]) {
+            if(255 < hexdec($matches[2])) {
                 return false;
             }
-            if(255 < $matches[3]) {
+            if(255 < hexdec($matches[3])) {
                 return false;
             }
 
-            return array((int)$matches[1], (int)$matches[2], (int)$matches[3]);
+            return array($matches[1], $matches[2], $matches[3]);
         }
 
         return false;

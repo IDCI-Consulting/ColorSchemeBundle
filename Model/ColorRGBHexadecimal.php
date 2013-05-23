@@ -13,6 +13,21 @@ use IDCI\Bundle\ColorSchemeBundle\Exceptions\UndefinedColorNameException;
 
 class ColorRGBHexadecimal extends ColorRGB
 {
+    public function getRed()
+    {
+        return (strlen(parent::getRed()) < 2 ? '0' : '').parent::getRed();
+    }
+
+    public function getGreen()
+    {
+        return (strlen(parent::getGreen()) < 2 ? '0' : '').parent::getGreen();
+    }
+
+    public function getBlue()
+    {
+        return (strlen(parent::getBlue()) < 2 ? '0' : '').parent::getBlue();
+    }
+
     public function __toString()
     {
         return sprintf("#%s%s%s",

@@ -13,7 +13,7 @@ class ColorRGBDecimal extends ColorRGB
 {
     public function __toString()
     {
-        return sprintf("%s,%s,%s",
+        return sprintf("%02d,%02d,%02d",
             $this->getRed(),
             $this->getGreen(),
             $this->getBlue()

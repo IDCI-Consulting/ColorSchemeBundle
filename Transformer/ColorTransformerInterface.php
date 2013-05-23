@@ -24,7 +24,7 @@ interface ColorTransformerInterface
      * Transform
      *
      * @param ColorInterface $color
-     * @return array
+     * @return mixed
      */
     public function transform(ColorInterface $color);
 }

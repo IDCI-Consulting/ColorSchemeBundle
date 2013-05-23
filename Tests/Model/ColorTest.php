@@ -17,27 +17,27 @@ class ColorTest extends \PHPUnit_Framework_TestCase
     {
         $color = new Color('100%,0,50');
 
-        $this->assertEquals(get_class($color->getColorObject()), "IDCI\Bundle\ColorSchemeBundle\Model\ColorHSL");
+        $this->assertInstanceOf("IDCI\Bundle\ColorSchemeBundle\Model\ColorHSL", $color->getColorObject());
     }
 
     public function testGuessRGBDecimalColorObject()
     {
         $color = new Color('180,68,38');
 
-        $this->assertEquals(get_class($color->getColorObject()), "IDCI\Bundle\ColorSchemeBundle\Model\ColorRGBDecimal");
+        $this->assertInstanceOf("IDCI\Bundle\ColorSchemeBundle\Model\ColorRGBDecimal", $color->getColorObject());
     }
 
     public function testGuessRGBHexadecimalColorObject()
     {
         $color = new Color('#F5D835');
 
-        $this->assertEquals(get_class($color->getColorObject()), "IDCI\Bundle\ColorSchemeBundle\Model\ColorRGBHexadecimal");
+        $this->assertInstanceOf("IDCI\Bundle\ColorSchemeBundle\Model\ColorRGBHexadecimal", $color->getColorObject());
     }
 
     public function testGuessSTRColorObject()
     {
         $color = new Color('gray');
 
-        $this->assertEquals(get_class($color->getColorObject()), "IDCI\Bundle\ColorSchemeBundle\Model\ColorSTR");
+        $this->assertInstanceOf("IDCI\Bundle\ColorSchemeBundle\Model\ColorSTR", $color->getColorObject());
     }
 }
