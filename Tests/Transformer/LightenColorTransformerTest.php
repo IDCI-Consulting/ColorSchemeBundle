@@ -19,7 +19,7 @@ class LightenColorTransformerTest extends \PHPUnit_Framework_TestCase
         $color = new Color("#FF0000");
         $transformer = new LightenColorTransformer();
         $lighten = $transformer
-            ->setParameter('vary', 20)
+            ->setLightnessVary(20)
             ->transform($color)
         ;
 

@@ -11,14 +11,14 @@ namespace IDCI\Bundle\ColorSchemeBundle\Transformer;
 
 use IDCI\Bundle\ColorSchemeBundle\Model\ColorInterface;
 
-class ComplementarityColorTransformer extends AbstractColorTransformer
+class ComplementColorTransformer extends AbstractColorTransformer
 {
     /**
      * @see IDCI\Bundle\ColorSchemeBundle\Transformer\ColorTransformerInterface
      */
     public function getName()
     {
-        return 'complementarity';
+        return 'complement';
     }
 
     /**
@@ -26,6 +26,9 @@ class ComplementarityColorTransformer extends AbstractColorTransformer
      */
     public function transform(ColorInterface $color)
     {
-        return 10;
+        $hsl = $color->toHSL();
+        $h = ($hsl->getHue() + 180) % 360;
+
+        return $hsl->setHue($h); 
     }
 }

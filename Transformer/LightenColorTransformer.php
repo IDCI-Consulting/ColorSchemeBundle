@@ -11,7 +11,7 @@ namespace IDCI\Bundle\ColorSchemeBundle\Transformer;
 
 use IDCI\Bundle\ColorSchemeBundle\Model\ColorInterface;
 
-class LightenColorTransformer extends AbstractColorTransformer
+class LightenColorTransformer extends AbstractLightnessColorTransformer
 {
     /**
      * @see IDCI\Bundle\ColorSchemeBundle\Transformer\ColorTransformerInterface
@@ -22,22 +22,12 @@ class LightenColorTransformer extends AbstractColorTransformer
     }
 
     /**
-     * Get the vary parameter
-     *
-     * @return integer
-     */
-    public function getVary()
-    {
-        return $this->getParameter('vary', 10);
-    }
-
-    /**
      * @see IDCI\Bundle\ColorSchemeBundle\Transformer\ColorTransformerInterface
      */
     public function transform(ColorInterface $color)
     {
         $hsl = $color->toHSL();
-        $l = $hsl->getLightness() + $this->getVary();
+        $l = $hsl->getLightness() + $this->getLightnessVary();
 
         return $hsl->setLightness($l > 100 ? 100 : $l);
     }
