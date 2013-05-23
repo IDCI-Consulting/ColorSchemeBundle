@@ -1,9 +1,9 @@
 <?php
 
 /**
- * 
- * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
- * @licence: GPL
+ *
+ * @author  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
+ * @licence GPL
  *
  */
 
@@ -69,24 +69,27 @@ class ColorHSL extends AbstractColor
         return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function isValid()
     {
         return
             is_int($this->getHue()) && 0 <= $this->getHue() && 360 >= $this->getHue() &&
             is_int($this->getSaturation()) && 0 <= $this->getSaturation() && 100 >= $this->getSaturation() &&
             is_int($this->getLightness()) && 0 <= $this->getLightness() && 100 >= $this->getLightness()
-        ;  
+        ;
     }
 
     /**
-     * @return ColorInterface
+     * {@inheritDoc}
      */
     public function toDec()
     {
         $h = $this->getHue() / 360;
         $s = $this->getSaturation() / 100;
         $l = $this->getLightness() / 100;
-         
+
         $q = ($l < 0.5) ? ($l * (1 + $s)) : ($l + $s - ($l * $s));
         $p = ((2 * $l) - $q);
         $rgb = array();
@@ -99,14 +102,14 @@ class ColorHSL extends AbstractColor
             if ($t < 0) {
                 $t += 1.0;
             }
-            if ($t > 1) { 
+            if ($t > 1) {
                 $t -= 1.0;
             }
             if ($t < (1 / 6)) {
                 $rgb[] = ($p + (($q - $p) * 6 * $t));
-            } else if (((1 / 6) <= $t) && ($t < 0.5)) {
+            } elseif (((1 / 6) <= $t) && ($t < 0.5)) {
                 $rgb[] = $q;
-            } else if ((0.5 <= $t) && ($t < (2 / 3))) {
+            } elseif ((0.5 <= $t) && ($t < (2 / 3))) {
                 $rgb[] = ($p + (($q - $p) * 6 * ((2 / 3) - $t)));
             } else {
                 $rgb[] = $p;
@@ -114,15 +117,15 @@ class ColorHSL extends AbstractColor
         }
 
         list($r, $g, $b) = $rgb;
-        $r = (int)round(255 * $r);
-        $g = (int)round(255 * $g);
-        $b = (int)round(255 * $b);
+        $r = (int) round(255 * $r);
+        $g = (int) round(255 * $g);
+        $b = (int) round(255 * $b);
 
         return new ColorRGBDecimal($r, $g, $b);
     }
 
     /**
-     * @return ColorInterface
+     * {@inheritDoc}
      */
     public function toHex()
     {
@@ -130,7 +133,7 @@ class ColorHSL extends AbstractColor
     }
 
     /**
-     * @return ColorInterface
+     * {@inheritDoc}
      */
     public function toHsl()
     {
@@ -138,8 +141,7 @@ class ColorHSL extends AbstractColor
     }
 
     /**
-     * @return ColorInterface
-     * @throw UndefinedColorNameException
+     * {@inheritDoc}
      */
     public function toStr()
     {

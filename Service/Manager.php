@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ *
  * @author:  Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
  * @licence: GPL
  *
@@ -13,8 +13,18 @@ use IDCI\Bundle\ColorSchemeBundle\Transformer\ColorTransformerInterface;
 
 class Manager
 {
-    protected $colors;
-    protected $transformers;
+    /**
+     * Colors holder
+     *
+     * @var array
+     */
+    protected $colors = array();
+
+    /**
+     * Transformers holder
+     * @var array
+     */
+    protected $transformers = array();
 
     /**
      * Constructor
@@ -28,7 +38,7 @@ class Manager
     /**
      * From Colors
      *
-     * @param array $colors
+     * @param  array   $colors
      * @return Manager
      */
     public function fromColors($colors)
@@ -51,7 +61,7 @@ class Manager
     /**
      * Add ColorTransformer
      *
-     * @param ColorTransformerInterface $transformer
+     * @param  ColorTransformerInterface $transformer
      * @return Manager
      */
     public function addColorTransformer(ColorTransformerInterface $transformer)
@@ -80,9 +90,9 @@ class Manager
     {
         $results = array();
 
-        foreach($this->getColorTransformers() as $transformer) {
-            foreach($this->getColors() as $k => $color) {
-                if(!isset($results[$k])) {
+        foreach ($this->getColorTransformers() as $transformer) {
+            foreach ($this->getColors() as $k => $color) {
+                if (!isset($results[$k])) {
                     $results[$k] = array();
                 }
                 $results[$k] = array_merge(
