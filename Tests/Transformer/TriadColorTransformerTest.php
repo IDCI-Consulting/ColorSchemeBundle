@@ -23,7 +23,7 @@ class TriadColorTransformerTest extends \PHPUnit_Framework_TestCase
             ->transform($color)
         ; 
 
-        $this->assertEquals($triad[0], "#80ff00");
-        $this->assertEquals($triad[1], "#8000ff");
+        $this->assertEquals($triad[0]->__toString(), "#80ff00");
+        $this->assertEquals($triad[1]->__toString(), "#8000ff");
     }
 }
