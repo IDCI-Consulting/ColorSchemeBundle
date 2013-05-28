@@ -2,7 +2,7 @@ services:
     color_scheme.manager:
         class: IDCI\Bundle\ColorSchemeBundle\Service\Manager
 
-    color_scheme_transformer.ligthen:
+    color_scheme_transformer.lighten:
         class: IDCI\Bundle\ColorSchemeBundle\Transformer\LightenColorTransformer
 
     color_scheme_transformer.darken:

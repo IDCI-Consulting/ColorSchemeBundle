@@ -10,6 +10,7 @@
 namespace IDCI\Bundle\ColorSchemeBundle\Transformer;
 
 use IDCI\Bundle\ColorSchemeBundle\Model\ColorInterface;
+use IDCI\Bundle\ColorSchemeBundle\Model\ColorHSL;
 
 class TriadColorTransformer extends AbstractColorTransformer
 {
@@ -50,15 +51,32 @@ class TriadColorTransformer extends AbstractColorTransformer
      */
     public function transform(ColorInterface $color)
     {
-        $hsl1 = $color->toHsl();
-        $hsl2 = clone $hsl1;
+        $hue1 = self::hueTransform($color->toHsl()->getHue(), $this->getHueVary());
+        $hue2 = self::hueTransform($color->toHsl()->getHue(), - $this->getHueVary());
 
-        $hue1 = ($hsl1->getHue() + $this->getHueVary()) % 360;
-        $hue2 = ($hsl2->getHue() - $this->getHueVary()) % 360;
+        $hsl1 = new ColorHSL($hue1, $color->toHsl()->getSaturation(), $color->toHsl()->getLightness());
+        $hsl2 = new ColorHSL($hue2, $color->toHsl()->getSaturation(), $color->toHsl()->getLightness());
 
         return array(
-            $hsl1->setHue($hue1)->toHex(),
-            $hsl2->setHue($hue2)->toHex()
+            $hsl1->toHex(),
+            $hsl2->toHex()
         );
+    }
+
+    /**
+     * Hue Transform
+     *
+     * @param integer $hue
+     * @param integer $vary
+     * @return integer
+     */
+    public static function hueTransform($hue, $vary)
+    {
+        $newHue = ($hue + $vary) % 360;
+        if($newHue < 0) {
+            $newHue = 360 + $newHue;
+        }
+
+        return $newHue;
     }
 }
