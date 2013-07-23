@@ -13,9 +13,9 @@ class ColorSTR extends AbstractColor
 {
     protected $colorName;
 
-    public function __construct($color_name)
+    public function __construct($colorName)
     {
-        $this->setColorName($color_name);
+        $this->setColorName($colorName);
 
         parent::__construct();
     }
@@ -30,9 +30,9 @@ class ColorSTR extends AbstractColor
         return $this->colorName;
     }
 
-    public function setColorName($color_name)
+    public function setColorName($colorName)
     {
-        $this->colorName = strtolower($color_name);
+        $this->colorName = strtolower($colorName);
 
         return $this;
     }

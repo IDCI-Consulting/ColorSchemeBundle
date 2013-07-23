@@ -19,9 +19,9 @@ class Color implements ColorInterface
      *
      * @param string $color
      */
-    public function __construct($color_value)
+    public function __construct($colorValue)
     {
-        $this->setColorValue($color_value);
+        $this->setColorValue($colorValue);
         $this->guessColorObject();
     }
 
@@ -30,9 +30,9 @@ class Color implements ColorInterface
      *
      * @param string $color_value
      */
-    public function setColorValue($color_value)
+    public function setColorValue($colorValue)
     {
-        $this->colorValue = $color_value;
+        $this->colorValue = $colorValue;
     }
 
     /**
@@ -50,9 +50,9 @@ class Color implements ColorInterface
      *
      * @param ColorInterface $color_object
      */
-    public function setColorObject(ColorInterface $color_object)
+    public function setColorObject(ColorInterface $colorObject)
     {
-        $this->colorObject = $color_object;
+        $this->colorObject = $colorObject;
     }
 
     /**
