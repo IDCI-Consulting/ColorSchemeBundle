@@ -9,6 +9,8 @@
 
 namespace IDCI\Bundle\ColorSchemeBundle\Model;
 
+use IDCI\Bundle\ColorSchemeBundle\Exceptions\InvalidColorException;
+
 class Color implements ColorInterface
 {
     protected $colorValue;
@@ -22,7 +24,12 @@ class Color implements ColorInterface
     public function __construct($colorValue)
     {
         $this->setColorValue($colorValue);
-        $this->guessColorObject();
+        if(!$this->guessColorObject()) {
+            throw new InvalidColorException(sprintf(
+                "The color %s was not guess",
+                $colorValue
+            ));
+        }
     }
 
     /**

@@ -9,6 +9,8 @@
 
 namespace IDCI\Bundle\ColorSchemeBundle\Model;
 
+use IDCI\Bundle\ColorSchemeBundle\Exceptions\UndefinedColorNameException;
+
 class ColorSTR extends AbstractColor
 {
     protected $colorName;
@@ -39,7 +41,11 @@ class ColorSTR extends AbstractColor
 
     public function getColorHexaCode()
     {
-        return $this->isValid() ? self::$webColorStrToHexMap[$this->colorName] : null;
+        if(!$this->isValid()) {
+            throw new UndefinedColorNameException($this->getColorName());
+        }
+
+        return self::$webColorStrToHexMap[$this->colorName];
     }
 
     public function isValid()
@@ -153,6 +159,7 @@ class ColorSTR extends AbstractColor
         "gold"                  => "#FFD700",
         "goldenrod"             => "#DAA520",
         "gray"                  => "#808080",
+        "grey"                  => "#808080",
         "green"                 => "#008000",
         "greenyellow"           => "#ADFF2F",
         "honeydew"              => "#F0FFF0",
